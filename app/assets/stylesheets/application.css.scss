@@ -42,6 +42,7 @@ ul.nav-bar.top {
 
   li { display:inline; }
   li.right { float:right; }
+  li.active:hover { cursor:pointer; }
   li.brand {
     border:0px;
     &:hover { background:none; }

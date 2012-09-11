@@ -1,0 +1,15 @@
+%h1
+  Week #{@week} Rankings
+
+%table
+  %thead
+    %tr
+      %th Rank
+      %th Player
+      %th Points
+  %tbody
+    -@projections.each do |pro|
+      %tr
+        %td= pro.rank
+        %td= link_to pro.player, player_path(pro.player)
+        %td= pro.standard

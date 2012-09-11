@@ -1,0 +1,6 @@
+%h1
+  Weeks
+
+%ul
+  -@weeks.each do |w|
+    %li= link_to "Week #{w}", week_path(w)
