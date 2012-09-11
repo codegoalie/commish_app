@@ -17,4 +17,5 @@ gem "machinist", ">= 2.0", :group => :test
 gem "compass-rails", ">= 1.0.3", :group => :assets
 gem "zurb-foundation", ">= 3.0.9", :group => :assets
 
+gem 'devise'
 gem 'fantasy_football_nerd'
