@@ -36,3 +36,31 @@ ul.nav li {
   background-color: #FCC;
   border: solid 1px #C66;
 }
+
+ul.nav-bar.top {
+  margin-top:0px;
+
+  li { display:inline; }
+  li.right { float:right; }
+  li.brand {
+    border:0px;
+    &:hover { background:none; }
+
+    a{
+      color: #2ba6cb;
+      font-size:44px;
+      font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+      font-weight: bold;
+      text-rendering: optimizeLegibility;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      margin-top: 14px;
+      margin-top:0px;
+
+      &:hover {
+       color:darken(#2ba6cb, 10%);
+      }
+    }
+  }
+}
+
