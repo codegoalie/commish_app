@@ -1,0 +1,12 @@
+%h1= @player
+
+.row
+  .one.column
+    %dl
+      %dt Position:
+      %dd= @player.position
+      %dt Team:
+      %dd= @player.team
+
+  .ten.columns.offset-by-one
+    =render partial: 'projections/table', locals: { projections: @projections }

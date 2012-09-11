@@ -11,3 +11,7 @@ require 'machinist/active_record'
 Player.blueprint do
   # Attributes here
 end
+
+Projection.blueprint do
+  # Attributes here
+end
