@@ -6,6 +6,10 @@ class FantasyTeamsController < ApplicationController
 
   def show
     @fantasy_team = FantasyTeam.find(params[:id])
+    @players = @fantasy_team.players
+    @current_week = Projection.maximum(:week)
+    @total_points = 0
+    @players.each{|p| @total_points += p.projections.for_week(@current_week).first.standard }
   end
 
   def new

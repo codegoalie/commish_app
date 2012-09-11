@@ -1,1 +1,25 @@
 %h1= @fantasy_team.name
+
+-if @players.any?
+  %table
+    %thead
+      %tr
+        %th Player
+        %th Position
+        %th Team
+        %th Projection
+    %tbody
+      -@players.each do |p|
+        %tr
+          %td= p
+          %td= p.position
+          %td= p.team
+          %td= p.projections.for_week(@current_week).first.standard
+    %tfoot
+      %tr
+        %td{colspan: 3 } Total Points:
+        %td= @total_points
+
+
+-else
+  Your team doesn't have any players.
