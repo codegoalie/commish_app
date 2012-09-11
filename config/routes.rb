@@ -1,5 +1,5 @@
 CommishApp::Application.routes.draw do
-  root :to => "home#index"
-
   resources :players, only: [ :index, :show ]
+
+  root :to => "home#index"
 end
