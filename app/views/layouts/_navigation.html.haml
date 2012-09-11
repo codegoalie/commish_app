@@ -1,1 +1,4 @@
-= link_to "Commish App", root_path, :class => 'brand'
+%h1= link_to "Commish App", root_path, :class => 'brand'
+%ul.nav-bar
+  %li{ class: active_nav('players') }
+    = link_to 'All Players', players_path
