@@ -1,0 +1,12 @@
+%h1 Fantasy Teams
+
+-if @fantasy_teams.any?
+  %ul
+    -@fantasy_teams.each do |team|
+      %li= link_to team, fantasy_team_path(team)
+-else
+  .well
+    You don't have any teams.
+    = link_to "Create a new Fantasy team here", new_fantasy_team_path
+
+

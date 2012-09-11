@@ -1,5 +1,6 @@
 class Player < ActiveRecord::Base
   has_many :projections
+  has_and_belongs_to_many :fantasy_teams
 
   scope :by_name, order(:name)
   scope :by_team, order(:team)

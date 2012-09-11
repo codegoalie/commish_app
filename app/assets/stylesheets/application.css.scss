@@ -37,6 +37,11 @@ ul.nav li {
   border: solid 1px #C66;
 }
 
+#flash_success {
+  background-color: #52DA76;
+  border: solid 1px darken(#52DA76, 10%);
+}
+
 ul.nav-bar.top {
   margin-top:0px;
 

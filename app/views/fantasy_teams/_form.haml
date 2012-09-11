@@ -1,0 +1,23 @@
+=form_for @fantasy_team do |f|
+  =show_errors_for(@fantasy_team)
+
+  .row
+    .one.columns
+      =f.label :name
+    .three.columns.end
+      =f.text_field :name
+  .row
+    .one.columns
+      =f.label :league
+    .three.columns.end
+      =f.text_field :league
+
+  .row
+    .twelve.columns
+      -submit_text = @fantasy_team.new_record? ? 'Add' : 'Save'
+      =f.submit submit_text
+      -unless @fantasy_team.new_record?
+        =link_to 'cancel', @fantasy_team
+        %br
+        %br
+        =link_to 'delete', @fantasy_team, method: 'destroy'

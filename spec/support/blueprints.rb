@@ -19,3 +19,7 @@ end
 User.blueprint do
   # Attributes here
 end
+
+FantasyTeam.blueprint do
+  # Attributes here
+end
