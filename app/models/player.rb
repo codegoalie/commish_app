@@ -6,6 +6,7 @@ class Player < ActiveRecord::Base
   scope :by_team, order(:team)
   scope :by_position, order(:position)
   scope :position, lambda { |position| where(position: position) }
+  scope :with_weekly_projections, lambda {|week| joins(:projections).where('projections.week = ?', week).order('projections.standard desc') }
 
   attr_accessible :name, :position, :team, :ffn_id
 

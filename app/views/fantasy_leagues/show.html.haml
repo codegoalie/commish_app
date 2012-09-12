@@ -14,7 +14,7 @@
       %li= link_to 'Update all team rosters', update_rosters_fantasy_league_path
       %li.divider
       %li= link_to 'Edit', edit_fantasy_league_path(@fantasy_league)
-  .ten.columns
+  .five.columns
     %h4 Week #{@current_week}
     -if @fantasy_league.fantasy_teams.any?
       %table
@@ -31,4 +31,20 @@
     -else
       #{@fantasy_league.name} doesn't have any teams.
       = link_to 'Create one here.', new_fantasy_team_path
+  .five.columns
+    %h4 Top Unclaimed Players
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Position
+          %th Rank
+          %th Points
+      %tbody
+        -@unclaimed_players.each do |p|
+          %tr
+            %td= p.name
+            %td= p.position
+            %td.align-right= p.weekly_projection(@current_week, :rank).to_i
+            %td.align-right= p.weekly_projection(@current_week)
 

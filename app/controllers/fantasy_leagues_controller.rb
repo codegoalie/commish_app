@@ -8,6 +8,8 @@ class FantasyLeaguesController < ApplicationController
   def show
     @fantasy_league = FantasyLeague.find(params[:id])
     @current_week = Projection.maximum(:week)
+
+    @unclaimed_players = @fantasy_league.unclaimed_players.with_weekly_projections(@current_week)
   end
 
   def new
