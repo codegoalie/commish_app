@@ -6,7 +6,7 @@ class FantasyLeague < ActiveRecord::Base
   validates_presence_of :name
 
   def unclaimed_players
-    Player.where("ffn_id not in (?)", claimed_players.map(&:id))
+    Player.where("ffn_id not in (?)", claimed_players.map(&:ffn_id))
   end
 
   def claimed_players
