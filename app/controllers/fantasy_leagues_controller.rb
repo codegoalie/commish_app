@@ -7,6 +7,7 @@ class FantasyLeaguesController < ApplicationController
 
   def show
     @fantasy_league = FantasyLeague.find(params[:id])
+    @current_week = Projection.maximum(:week)
   end
 
   def new
@@ -47,5 +48,22 @@ class FantasyLeaguesController < ApplicationController
 
     flash[:notice] = "#{@fantasy_league.name} deleted."
     redirect_to fantasy_leagues_path
+  end
+
+  def update_rosters
+    @fantasy_league = FantasyLeague.find(params[:id])
+
+    errors = []
+    @fantasy_league.fantasy_teams.each do |team|
+      errors + team.update_roster.map{|e| "#{team.name}: #{e}"}
+    end
+
+    if errors.any?
+      flash[:alert] = errors.join("<br>").html_safe
+    else
+      flash[:success] = 'Rosters updated successfully.'
+    end
+
+    redirect_to @fantasy_league
   end
 end

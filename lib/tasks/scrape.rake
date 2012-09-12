@@ -13,17 +13,22 @@ namespace :scrape do
     page = open(link) {|f| Hpricot(f) }
     player_table = page.search("//table[@id='playertable_0")
     player_links = player_table.search("//td[@class='playertablePlayerName']/a[1]")
-    player_links.each do |a|
-      name = a.inner_html
-      names = name.split('  ')
+    if player_links.any?
+      team.players.destroy_all
+      player_links.each do |a|
+        name = a.inner_html
+        names = name.split(' ')
 
-      if (names[1] == 'D/ST' && player = Player.where("name like '%#{names[0]}%'")) ||
-        player = Player.find_by_name(name)
+        if (names[1] == 'D/ST' && player = Player.where("name like '%#{names[0]}%'")) ||
+          player = Player.find_by_name(name)
 
-        team.players << player
-      else
-        puts "Couldn't find player with name '#{name}'"
+          team.players << player
+        else
+          puts "Couldn't find player with name '#{name}'"
+        end
       end
+    else
+      puts "No player links found. Might ESPN have changed their markup?"
     end
   end
 end

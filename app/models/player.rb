@@ -12,5 +12,13 @@ class Player < ActiveRecord::Base
   def to_s
     "#{name} (#{ffn_id})"
   end
+  
+  def weekly_projection(week, type=:standard)
+    if projection = projections.for_week(week).first
+      (projection.send(type) || 0).round(2)
+    else
+      0
+    end
+  end
 end
 

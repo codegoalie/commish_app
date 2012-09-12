@@ -11,6 +11,11 @@
       =f.label :fantasy_league_id
     .three.columns.end
       =f.collection_select :fantasy_league_id, FantasyLeague.all, :id, :name
+  .row
+    .one.columns
+      =f.label :espn_id
+    .three.columns.end
+      =f.number_field :espn_id
 
   .row
     .twelve.columns

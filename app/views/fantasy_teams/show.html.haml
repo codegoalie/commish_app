@@ -2,8 +2,12 @@
 
 .row
   .two.columns
-    -if @fantasy_team.fantasy_league.espn_id
-      =# link_to "Update roster", update_team_roster_path
+    %ul.side-nav
+      -if @fantasy_team.fantasy_league.espn_id
+        %li= link_to "Update roster", update_roster_fantasy_team_path
+      %li= link_to 'Edit', edit_fantasy_team_path(@fantasy_team)
+      %li.divider
+      %li= link_to @fantasy_team.fantasy_league.name, @fantasy_team.fantasy_league
   .ten.columns
     -if @players.any?
       %table
@@ -19,7 +23,7 @@
               %td= p
               %td= p.position
               %td= p.team
-              %td.align-right= p.projections.for_week(@current_week).first.standard.round(2)
+              %td.align-right= p.weekly_projection(@current_week)
         %tfoot
           %tr
             %td{colspan: 3 } Total Points:
