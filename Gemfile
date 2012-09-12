@@ -9,7 +9,6 @@ end
 gem 'jquery-rails'
 gem "haml", ">= 3.1.7"
 gem "haml-rails", ">= 0.3.5", :group => :development
-gem "hpricot", ">= 0.8.6", :group => :development
 gem "ruby_parser", ">= 2.3.1", :group => :development
 gem "rspec-rails", ">= 2.11.0", :group => [:development, :test]
 gem "capybara", ">= 1.1.2", :group => :test
@@ -20,6 +19,7 @@ gem "zurb-foundation", ">= 3.0.9", :group => :assets
 gem 'devise'
 gem 'fantasy_football_nerd'
 gem 'mechanize'
+gem 'hpricot'
 
 group :development do
   gem 'therubyracer'

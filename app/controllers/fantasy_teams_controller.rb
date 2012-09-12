@@ -9,7 +9,7 @@ class FantasyTeamsController < ApplicationController
     @players = @fantasy_team.players
     @current_week = Projection.maximum(:week)
     @total_points = 0
-    @players.each{|p| @total_points += p.projections.for_week(@current_week).first.standard }
+    @players.each{|p| @total_points += p.projections.for_week(@current_week).first.standard.round(2) }
   end
 
   def new
@@ -29,11 +29,23 @@ class FantasyTeamsController < ApplicationController
   end
 
   def edit
+    @fantasy_team = FantasyTeam.find(params[:id])
   end
 
   def update
+    @fantasy_team = FantasyTeam.find(params[:id])
+
+    if @fantasy_team.update_attributes(params[:fantasy_team])
+      flash[:success] = "Updated #{@fantasy_team.name}"
+      redirect_to @fantasy_team
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+  end
+
+  def update_team_roster
   end
 end

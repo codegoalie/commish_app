@@ -12,6 +12,10 @@
  *= require foundation_and_overrides
  *= require_tree .
 */
+
+.align-right {
+  text-align:right;
+}
 .brand {
   float: left;
   padding-right: 8px;

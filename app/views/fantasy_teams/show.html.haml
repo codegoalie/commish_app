@@ -1,25 +1,30 @@
 %h1= @fantasy_team.name
 
--if @players.any?
-  %table
-    %thead
-      %tr
-        %th Player
-        %th Position
-        %th Team
-        %th Projection
-    %tbody
-      -@players.each do |p|
-        %tr
-          %td= p
-          %td= p.position
-          %td= p.team
-          %td= p.projections.for_week(@current_week).first.standard
-    %tfoot
-      %tr
-        %td{colspan: 3 } Total Points:
-        %td= @total_points
+.row
+  .two.columns
+    -if @fantasy_team.fantasy_league.espn_id
+      =# link_to "Update roster", update_team_roster_path
+  .ten.columns
+    -if @players.any?
+      %table
+        %thead
+          %tr
+            %th Player
+            %th Position
+            %th Team
+            %th Projection
+        %tbody
+          -@players.each do |p|
+            %tr
+              %td= p
+              %td= p.position
+              %td= p.team
+              %td.align-right= p.projections.for_week(@current_week).first.standard.round(2)
+        %tfoot
+          %tr
+            %td{colspan: 3 } Total Points:
+            %td.align-right= @total_points
 
 
--else
-  Your team doesn't have any players.
+    -else
+      Your team doesn't have any players.

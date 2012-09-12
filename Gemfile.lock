@@ -208,7 +208,7 @@ DEPENDENCIES
   fantasy_football_nerd
   haml (>= 3.1.7)
   haml-rails (>= 0.3.5)
-  hpricot (>= 0.8.6)
+  hpricot
   jquery-rails
   machinist (>= 2.0)
   mechanize

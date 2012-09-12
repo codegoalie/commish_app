@@ -8,9 +8,9 @@
       =f.text_field :name
   .row
     .one.columns
-      =f.label :league
+      =f.label :fantasy_league_id
     .three.columns.end
-      =f.text_field :league
+      =f.collection_select :fantasy_league_id, FantasyLeague.all, :id, :name
 
   .row
     .twelve.columns

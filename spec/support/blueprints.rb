@@ -23,3 +23,7 @@ end
 FantasyTeam.blueprint do
   # Attributes here
 end
+
+FantasyLeague.blueprint do
+  # Attributes here
+end
