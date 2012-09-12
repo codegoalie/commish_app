@@ -19,6 +19,7 @@ gem "zurb-foundation", ">= 3.0.9", :group => :assets
 
 gem 'devise'
 gem 'fantasy_football_nerd'
+gem 'mechanize'
 
 group :development do
   gem 'therubyracer'
