@@ -1,0 +1,22 @@
+%h1= @fantasy_league.name
+
+.row
+  .two.columns
+    %dl
+      %dt ESPN ID:
+      %dd= @fantasy_league.espn_id
+      %dt Year:
+      %dd= @fantasy_league.year
+
+    %br
+    = link_to 'Edit', edit_fantasy_league_path(@fantasy_league)
+  .ten.columns
+    -if @fantasy_league.fantasy_teams.any?
+      %ul
+        -@fantasy_league.fantasy_teams.each do |team|
+          %li= link_to team, team
+
+    -else
+      #{@fantasy_league.name} doesn't have any teams.
+      = link_to 'Create one here.', new_fantasy_team_path
+

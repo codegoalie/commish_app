@@ -1,0 +1,13 @@
+%h1 Fantasy Leagues
+
+.row
+  .two.columns
+    = render 'sidebar'
+  .ten.columns
+    -if @fantasy_leagues.any?
+      %ul
+        -@fantasy_leagues.each do |league|
+          %li= link_to league.name, league
+    -else
+      You don't have any leagues. 
+      = link_to 'Create a new league.', new_fantasy_league_path

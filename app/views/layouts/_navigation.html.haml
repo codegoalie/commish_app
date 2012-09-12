@@ -5,7 +5,10 @@
   %li{ class: active_nav('weeks') }
     = link_to 'Weeks', weeks_path
   -if user_signed_in?
-    %li= link_to 'Teams', fantasy_teams_path
+    %li{ class: active_nav('fantasy_leagues') }
+      = link_to 'Leagues', fantasy_leagues_path
+    %li{ class: active_nav('fantasy_teams') }
+      = link_to 'Teams', fantasy_teams_path
 
   -if user_signed_in?
     %li.right= link_to "Log out", destroy_user_session_path

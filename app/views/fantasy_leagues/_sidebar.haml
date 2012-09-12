@@ -1,0 +1,6 @@
+%ul.side-nav
+  %li{ class: active_nav_action('index') }
+    =link_to 'All Leagues', fantasy_leagues_path
+  %li.divider
+  %li{ class: active_nav_action('new') }
+    =link_to 'New League', new_fantasy_league_path

@@ -74,3 +74,11 @@ ul.nav-bar.top {
   }
 }
 
+#error_messages {
+  margin:1em 1em 3em 1em;
+  .error_message {
+    color:red;
+    font-weight:bold;
+    margin:.5em;
+  }
+}

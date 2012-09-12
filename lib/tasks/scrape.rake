@@ -15,7 +15,11 @@ namespace :scrape do
     player_links = player_table.search("//td[@class='playertablePlayerName']/a[1]")
     player_links.each do |a|
       name = a.inner_html
-      if player = Player.find_by_name(name)
+      names = name.split('  ')
+
+      if (names[1] == 'D/ST' && player = Player.where("name like '%#{names[0]}%'")) ||
+        player = Player.find_by_name(name)
+
         team.players << player
       else
         puts "Couldn't find player with name '#{name}'"
