@@ -38,6 +38,7 @@
         %tr
           %th Name
           %th Position
+          %th Team
           %th Rank
           %th Points
       %tbody
@@ -45,6 +46,7 @@
           %tr
             %td= p.name
             %td= p.position
+            %td= p.team
             %td.align-right= p.weekly_projection(@current_week, :rank).to_i
             %td.align-right= p.weekly_projection(@current_week)
 

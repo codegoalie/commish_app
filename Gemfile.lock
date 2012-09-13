@@ -79,7 +79,6 @@ GEM
       railties (>= 3.1, < 4.1)
     hashie (1.2.0)
     hike (1.2.1)
-    hpricot (0.8.6)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.1.2)
@@ -208,10 +207,10 @@ DEPENDENCIES
   fantasy_football_nerd
   haml (>= 3.1.7)
   haml-rails (>= 0.3.5)
-  hpricot
   jquery-rails
   machinist (>= 2.0)
   mechanize
+  nokogiri
   rails (= 3.2.8)
   rspec-rails (>= 2.11.0)
   ruby_parser (>= 2.3.1)

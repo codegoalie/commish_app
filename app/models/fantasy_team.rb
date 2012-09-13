@@ -18,24 +18,35 @@ class FantasyTeam < ActiveRecord::Base
   def update_roster
     link = "http://games.espn.go.com/ffl/clubhouse?leagueId=#{fantasy_league.espn_id}&teamId=#{espn_id}&seasonId=#{fantasy_league.year}"
 
-    page = open(link) {|f| Hpricot(f) }
-    player_table = page.search("//table[@id='playertable_0")
-    player_links = player_table.search("//td[@class='playertablePlayerName']/a[1]")
+    page = Nokogiri::HTML(open(link))
+    player_table = page.search("//table[@id='playertable_0']")
+    player_data = player_table.search("//td[@class='playertablePlayerName']")
 
     errors = []
-    if player_links.any?
+    if player_data.any?
       players.destroy_all
 
-      player_links.each do |a|
-        name = a.inner_html
-        names = name.split(' ')
+      player_data.each do |d|
+        text = d.text.split(', ')
 
-        if (names[1] == 'D/ST' && player = Player.where("name like '%#{names[0]}%'")) ||
-          player = Player.find_by_name(name)
+        if text.length == 1 # name is a defense team
+          team_name = text[0].split(' ')[0]
+          if player = Player.where("name like '%#{team_name}%'")
+            players << player
+          else
+            errors << "\nCouldn't find defense team with name '#{name}'"
+          end
+        else #name is a player
+          name = text[0]
+          modifiers = text[1].gsub("\u00A0", ' ').split(' ')
+          #team = modifiers[0].upcase
+          position = modifiers[1].upcase
 
-          players << player
-        else
-          errors << "\nCouldn't find player with name '#{name}'"
+          if player = Player.where(name: name, position: position).first
+            players << player
+          else
+            errors << "\nCouldn't find player with name '#{name}'"
+          end
         end
       end
     else
