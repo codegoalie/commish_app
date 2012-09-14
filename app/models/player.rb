@@ -1,6 +1,7 @@
 class Player < ActiveRecord::Base
   has_many :projections
-  has_and_belongs_to_many :fantasy_teams
+  has_many :FantasyTeamsPlayers
+  has_many :fantasy_teams, through: :FantasyTeamsPlayers
   has_many :injuries
 
   scope :by_name, order(:name)
