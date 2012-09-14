@@ -5,4 +5,8 @@ class Projection < ActiveRecord::Base
 
   attr_accessible :ppr, :ppr_high, :ppr_low, :rank, :standard, :standard_high,
     :standard_low, :week, :player_id
+
+  def self.current_week
+    maximum(:week)
+  end
 end

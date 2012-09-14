@@ -27,3 +27,7 @@ end
 FantasyLeague.blueprint do
   # Attributes here
 end
+
+Injury.blueprint do
+  # Attributes here
+end

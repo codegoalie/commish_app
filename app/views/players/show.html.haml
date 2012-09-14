@@ -8,5 +8,8 @@
       %dt Team:
       %dd= @player.team
 
-  .ten.columns.offset-by-one
+  .five.columns.offset-by-one
     =render partial: 'projections/table', locals: { projections: @projections }
+  .five.columns
+    %h4 Injuries
+      %table

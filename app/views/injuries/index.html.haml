@@ -1,0 +1,33 @@
+%h1 Injuries for week #{@current_week}
+
+.row
+  .two.column
+    %ul.side-nav
+      %li= link_to 'Update injuries', update_all_injuries_path(@current_week)
+  .ten.columns
+    -if @injuries.any?
+      %table
+        %thead
+          %tr
+            %th Player
+            %th Position
+            %th Team
+            %th Fantasy Teams
+            %th Status
+        %tbody
+          -@injuries.each do |injury|
+            %tr
+              -p = injury.player
+              %td= p
+              %td= p.position
+              %td= p.team
+              %td= p.fantasy_teams.collect{|t| link_to(t.name, t)}.join("<br>").html_safe
+              %td
+                = injury.injury_desc
+                %br
+                = injury.practice_status_desc
+                %br
+                = injury.game_status_desc
+    -else
+      There are no injuries for this week. Try 
+      = link_to 'updating the injuries.', update_all_injuries_path(@current_week)

@@ -1,6 +1,7 @@
 class Player < ActiveRecord::Base
   has_many :projections
   has_and_belongs_to_many :fantasy_teams
+  has_many :injuries
 
   scope :by_name, order(:name)
   scope :by_team, order(:team)
@@ -11,9 +12,14 @@ class Player < ActiveRecord::Base
   attr_accessible :name, :position, :team, :ffn_id
 
   def to_s
-    "#{name} (#{ffn_id})"
+    full_name = "#{name} (#{ffn_id})"
+    if injuries.for_week(Projection.current_week).exists?
+      "<span class='injured'>#{full_name}</span>".html_safe
+    else
+      full_name
+    end
   end
-  
+
   def weekly_projection(week, type=:standard)
     if projection = projections.for_week(week).first
       (projection.send(type) || 0).round(2)

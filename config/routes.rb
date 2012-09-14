@@ -13,6 +13,8 @@ CommishApp::Application.routes.draw do
       get :update_rosters, path: 'update-rosters'
     end
   end
+  match "injuries/update-all/:week" => 'injuries#update_all', as: :update_all_injuries
+  match "injuries(/:week)" => 'injuries#index', as: :injuries
 
   root :to => "home#index"
 end
