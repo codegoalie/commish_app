@@ -23,6 +23,7 @@ class FantasyTeam < ActiveRecord::Base
     player_data = player_table.search("//td[@class='playertablePlayerName']")
 
     errors = []
+    count = 1
     if player_data.any?
       players.destroy_all
 
@@ -37,7 +38,7 @@ class FantasyTeam < ActiveRecord::Base
             errors << "\nCouldn't find defense team with name '#{name}'"
           end
         else #name is a player
-          name = text[0]
+          name = text[0].gsub('*', '')
           modifiers = text[1].gsub("\u00A0", ' ').split(' ')
           #team = modifiers[0].upcase
           position = modifiers[1].upcase
@@ -48,6 +49,7 @@ class FantasyTeam < ActiveRecord::Base
             errors << "\nCouldn't find player with name '#{name}'"
           end
         end
+        count += 1
       end
     else
       errors << "No player links found on ESPN. Maybe ESPN changed their page markup?"

@@ -86,3 +86,13 @@ ul.nav-bar.top {
 .injured {
   color:red;
 }
+.in-league {
+  text-decoration:underline;
+}
+.on-team {
+  text-decoration:underline;
+  font-weight:bold;
+  a {
+    color:green;
+  }
+}

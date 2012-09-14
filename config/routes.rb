@@ -15,6 +15,7 @@ CommishApp::Application.routes.draw do
   end
   match "injuries/update-all/:week" => 'injuries#update_all', as: :update_all_injuries
   match "injuries(/:week)" => 'injuries#index', as: :injuries
+  match 'update-projections(/:week)' => 'projections#update', as: :update_projections
 
   root :to => "home#index"
 end

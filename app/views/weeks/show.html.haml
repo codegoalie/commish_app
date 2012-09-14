@@ -1,15 +1,20 @@
 %h1
   Week #{@week} Rankings
 
-%table
-  %thead
-    %tr
-      %th Rank
-      %th Player
-      %th Points
-  %tbody
-    -@projections.each do |pro|
-      %tr
-        %td= pro.rank
-        %td= link_to pro.player, player_path(pro.player)
-        %td= pro.standard
+.row
+  .two.columns
+    %ul.side-nav
+      %li= link_to 'Update Projections', update_projections_path
+  .ten.columns
+    %table
+      %thead
+        %tr
+          %th Rank
+          %th Player
+          %th Points
+      %tbody
+        -@projections.each do |pro|
+          %tr
+            %td= pro.rank
+            %td= link_to pro.player, player_path(pro.player)
+            %td= pro.standard.round(2)

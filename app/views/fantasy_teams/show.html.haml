@@ -8,7 +8,7 @@
       %li= link_to 'Edit', edit_fantasy_team_path(@fantasy_team)
       %li.divider
       %li= link_to @fantasy_team.fantasy_league.name, @fantasy_team.fantasy_league
-  .ten.columns
+  .six.columns
     -if @players.any?
       %table
         %thead
@@ -28,7 +28,30 @@
           %tr
             %td{colspan: 3 } Total Points:
             %td.align-right= @total_points
-
-
     -else
       Your team doesn't have any players.
+  .four.columns
+    -if @projections.any?
+      %table
+        %thead
+          %tr
+            %th Rank
+            %th Player
+            %th Points
+        %tbody
+          -@projections.each do |pro|
+            %tr
+              %td= pro.rank
+              -if @players.include?(pro.player)
+                -c = 'on-team'
+              -elsif @league_players.include?(pro.player)
+                -c = 'in-league' 
+              -else
+                -c = ''
+
+              %td{class: c}= link_to pro.player, player_path(pro.player)
+              %td= pro.standard.round(2)
+      %table
+    -else
+      It looks like there aren't any projections for this week.
+      =link_to 'Get the lastest projections here', update_projections_path
