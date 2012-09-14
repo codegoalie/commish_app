@@ -35,7 +35,7 @@ class FantasyLeaguesController < ApplicationController
   def update
     @fantasy_league = FantasyLeague.find(params[:id])
 
-    if @fantasy_league = FantasyLeague.update_attributes(params[:fantasy_league])
+    if @fantasy_league.update_attributes(params[:fantasy_league])
       flash[:success] = "#{@fantasy_league.name} updated."
       redirect_to @fantasy_league
     else
