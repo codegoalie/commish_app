@@ -28,13 +28,20 @@ namespace :load do
 
   desc "Load weekly projections from FFNerd API."
   task :projections, [:week] => :environment do |t, args|
-    args.with_defaults(week: 1)
+    args.with_defaults(week: Projection.maximum(:week) + 1)
 
     week = args.week
 
     errors = []
+    projections = []
 
-    FFNerd.projections(week).each do |projection|
+    while projections.length == 0
+      projections = FFNerd.projections(week)
+      week -=1
+    end
+    week += 1
+
+    projections.each do |projection|
       unless player = Player.find_by_ffn_id(projection[:id])
         player = Player.create(name: projection[:name], team: projection[:team],
                                position: projection[:position], ffn_id: projection[:id])
