@@ -1,0 +1,5 @@
+-link = link_to player, player_path(player)
+-if player.injuries.for_week(Projection.current_week).exists?
+  %span.post-icon.injured #{link}
+-else
+  =link

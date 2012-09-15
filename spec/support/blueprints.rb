@@ -31,3 +31,7 @@ end
 Injury.blueprint do
   # Attributes here
 end
+
+FantasyPlayer.blueprint do
+  # Attributes here
+end

@@ -1,9 +1,11 @@
 %ul.nav-bar.top
   %li.brand= link_to "Commish App", root_path, :class => 'brand'
   %li{ class: active_nav('players') }
-    = link_to 'All Players', players_path
+    = link_to 'Players', players_path
   %li{ class: active_nav('weeks') }
     = link_to 'Weeks', weeks_path
+  %li{ class: active_nav('injuries') }
+    = link_to 'Injuries', injuries_path
   -if user_signed_in?
     %li{ class: active_nav('fantasy_leagues') }
       = link_to 'Leagues', fantasy_leagues_path

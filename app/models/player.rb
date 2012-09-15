@@ -1,7 +1,7 @@
 class Player < ActiveRecord::Base
   has_many :projections
-  has_many :FantasyTeamsPlayers
-  has_many :fantasy_teams, through: :FantasyTeamsPlayers
+  has_many :fantasy_players
+  has_many :fantasy_teams, through: :fantasy_players
   has_many :injuries
 
   scope :by_name, order(:name)
@@ -13,12 +13,7 @@ class Player < ActiveRecord::Base
   attr_accessible :name, :position, :team, :ffn_id
 
   def to_s
-    full_name = "#{name} (#{ffn_id})"
-    if injuries.for_week(Projection.current_week).exists?
-      "<span class='injured'>#{full_name}</span>".html_safe
-    else
-      full_name
-    end
+    name
   end
 
   def weekly_projection(week, type=:standard)

@@ -57,7 +57,7 @@ class ProjectionsController < ApplicationController
       end
       flash[:alert] = message
     else
-      flash[:success] = "No errors. All week #{week} projections imported successfully."
+      flash[:success] = "All week #{week} projections updated successfully."
     end
 
     redirect_to :back

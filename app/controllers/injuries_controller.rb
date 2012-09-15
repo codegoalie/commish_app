@@ -20,6 +20,7 @@ class InjuriesController < ApplicationController
         Injury.create({player_id: player.id}.merge(injury[:injury]))
       end
     end
+    flash[:success] = "Injuries updated for week #{current_week}"
     redirect_to injuries_path
   end
 

@@ -1,8 +1,8 @@
 class FantasyTeam < ActiveRecord::Base
   belongs_to :user
   belongs_to :fantasy_league
-  has_many :fantasyteamsplayers
-  has_many :players, through: :FantasyTeamsPlayers, uniq: true
+  has_many :fantasy_players
+  has_many :players, through: :fantasy_players, uniq: true
 
   attr_accessible :fantasy_league_id, :name, :espn_id
 
@@ -12,7 +12,7 @@ class FantasyTeam < ActiveRecord::Base
 
   def weekly_projection(week, type=:standard)
     points = 0
-    players.each{|p| points += p.weekly_projection(week, type) }
+    fantasy_players.each{|p| points += p.weekly_projection(week, type) if p.starter }
     points
   end
 
@@ -26,15 +26,15 @@ class FantasyTeam < ActiveRecord::Base
     errors = []
     count = 1
     if player_data.any?
-      players.destroy_all
+      fantasy_players.destroy_all
 
       player_data.each do |d|
         text = d.text.split(', ')
 
         if text.length == 1 # name is a defense team
           team_name = text[0].split(' ')[0]
-          if player = Player.where("name like '%#{team_name}%'")
-            players << player
+          if player = Player.where("name like '%#{team_name}%'").first
+            fantasy_players << FantasyPlayer.new(player: player, starter: count <= 9)
           else
             errors << "\nCouldn't find defense team with name '#{name}'"
           end
@@ -45,7 +45,7 @@ class FantasyTeam < ActiveRecord::Base
           position = modifiers[1].upcase
 
           if player = Player.where(name: name, position: position).first
-            players << player
+            fantasy_players << FantasyPlayer.new(player: player, starter: count <= 9)
           else
             errors << "\nCouldn't find player with name '#{name}'"
           end

@@ -3,7 +3,7 @@
 .row
   .two.column
     %ul.side-nav
-      %li= link_to 'Update injuries', update_all_injuries_path(@current_week)
+      %li= link_to 'Update injuries', update_all_injuries_path(@current_week), class: 'pre-icon update'
   .ten.columns
     -if @injuries.any?
       %table
@@ -18,7 +18,7 @@
           -@injuries.each do |injury|
             %tr
               -p = injury.player
-              %td= p
+              %td= render p
               %td= p.position
               %td= p.team
               %td= p.fantasy_teams.collect{|t| link_to(t.name, t)}.join("<br>").html_safe

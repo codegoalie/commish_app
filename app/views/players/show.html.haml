@@ -1,4 +1,4 @@
-%h1= @player
+%h1= render @player
 
 .row
   .one.column
@@ -12,4 +12,17 @@
     =render partial: 'projections/table', locals: { projections: @projections }
   .five.columns
     %h4 Injuries
+    -if @player.injuries.any?
       %table
+        %thead
+          %tr
+            %th Week
+            %th Status
+        %tbody
+          -@player.injuries.each do |i|
+            %tr
+              %td= i.week
+              %td= i.status
+    -else
+      #{@player} has no injuries.
+

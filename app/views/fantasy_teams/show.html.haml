@@ -8,8 +8,8 @@
       %li= link_to 'Edit', edit_fantasy_team_path(@fantasy_team)
       %li.divider
       %li= link_to @fantasy_team.fantasy_league.name, @fantasy_team.fantasy_league
-  .six.columns
-    -if @players.any?
+  .five.columns
+    -if @fantasy_players.any?
       %table
         %thead
           %tr
@@ -18,9 +18,9 @@
             %th Team
             %th Projection
         %tbody
-          -@players.each do |p|
-            %tr
-              %td= p
+          -@fantasy_players.each do |p|
+            %tr{ class: p.starter ? "starter" : ''  }
+              %td= render p.player
               %td= p.position
               %td= p.team
               %td.align-right= p.weekly_projection(@current_week)
@@ -30,26 +30,28 @@
             %td.align-right= @total_points
     -else
       Your team doesn't have any players.
-  .four.columns
+  .five.columns
     -if @projections.any?
       %table
         %thead
           %tr
             %th Rank
-            %th Player
+            %th{colspan: 2} Player
             %th Points
         %tbody
           -@projections.each do |pro|
             %tr
               %td= pro.rank
-              -if @players.include?(pro.player)
-                -c = 'on-team'
-              -elsif @league_players.include?(pro.player)
-                -c = 'in-league' 
-              -else
-                -c = ''
 
-              %td{class: c}= link_to pro.player, player_path(pro.player)
+              -fantasy_player = pro.player.fantasy_players.where(fantasy_team_id: @fantasy_league.fantasy_teams.map(&:id)).first 
+              -starter = fantasy_player && fantasy_player.starter
+              -c = starter ? 'starter' : @league_players.include?(pro.player) ? 'no-start' : ''
+              -team = fantasy_player ? fantasy_player.fantasy_team.name : ''
+              %td.pre-icon{ class: c, title: team }
+
+              -c = @players.include?(pro.player) ? 'on-team' : ''
+              %td{class: c}= render pro.player
+
               %td= pro.standard.round(2)
       %table
     -else

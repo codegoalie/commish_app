@@ -1,0 +1,28 @@
+.pre-icon {
+  padding:3px 0 0 30px;
+  height: 25px;
+}
+.post-icon {
+  padding:3px 30px 0 0 ;
+  height: 25px;
+  background-position:right;
+}
+
+.pre-icon.refresh, .post-icon.refresh {
+  background: image-url('glyphicons_081_refresh.png') no-repeat;
+}
+.pre-icon.update , .post-icon.update {
+  background: image-url('glyphicons_081_refresh.png') no-repeat;
+}
+.pre-icon.update-all, .post-icon.update-all {
+  background: image-url('glyphicons_082_roundabout.png') no-repeat;
+}
+.post-icon.injured {
+  background: image-url('glyphicons_298_hospital.png') no-repeat right 7px;
+}
+.pre-icon.no-start {
+  background: image-url('glyphicons_048_dislikes.png') no-repeat 4px;
+}
+.pre-icon.starter {
+  background: image-url('glyphicons_049_star.png') no-repeat 4px;
+}
