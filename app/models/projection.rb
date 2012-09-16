@@ -7,6 +7,6 @@ class Projection < ActiveRecord::Base
     :standard_low, :week, :player_id
 
   def self.current_week
-    maximum(:week)
+    maximum(:week) || 1
   end
 end

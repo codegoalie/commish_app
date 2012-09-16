@@ -28,7 +28,7 @@ namespace :load do
 
   desc "Load weekly projections from FFNerd API."
   task :projections, [:week] => :environment do |t, args|
-    args.with_defaults(week: Projection.maximum(:week) + 1)
+    args.with_defaults(week: Projection.current_week + 1)
 
     week = args.week
 
