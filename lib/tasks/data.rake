@@ -30,7 +30,7 @@ namespace :load do
   task :projections, [:week] => :environment do |t, args|
     args.with_defaults(week: Projection.current_week + 1)
 
-    week = args.week
+    week = args.week.to_i
 
     errors = []
     projections = []

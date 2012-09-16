@@ -2,7 +2,7 @@ class ProjectionsController < ApplicationController
 
   def update
     week = Projection.current_week + 1
-    projections = FFNerd.projections(week) 
+    projections = FFNerd.projections(week)
 
     if projections.empty?
       week -= 1
