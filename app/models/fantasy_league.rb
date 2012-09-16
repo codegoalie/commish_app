@@ -1,5 +1,6 @@
 class FantasyLeague < ActiveRecord::Base
   has_many :fantasy_teams
+  belongs_to :user
 
   attr_accessible :espn_id, :name, :year
 

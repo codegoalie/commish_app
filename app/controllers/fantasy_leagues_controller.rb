@@ -2,7 +2,7 @@ class FantasyLeaguesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @fantasy_leagues = FantasyLeague.all
+    @fantasy_leagues = current_user.fantasy_leagues
   end
 
   def show
