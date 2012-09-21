@@ -1,7 +1,7 @@
 class WeeksController < ApplicationController
 
   def index
-    @weeks = Projection.select('distinct week').map(&:week)
+    @weeks = Projection.select('distinct week').order(:week).map(&:week)
   end
 
   def show
