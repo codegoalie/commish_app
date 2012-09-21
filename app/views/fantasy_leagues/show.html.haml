@@ -1,4 +1,5 @@
-%h1= @fantasy_league.name
+= content_for :title do
+  %h1= @fantasy_league.name
 
 .row
   .two.columns
@@ -45,7 +46,7 @@
       %tbody
         -@unclaimed_players.each do |p|
           %tr
-            %td= p.name
+            %td= render p
             %td= p.position
             %td= p.team
             %td.align-right= p.weekly_projection(@current_week, :rank).to_i

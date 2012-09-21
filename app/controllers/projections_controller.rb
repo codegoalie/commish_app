@@ -1,7 +1,7 @@
 class ProjectionsController < ApplicationController
 
   def update
-    week = Projection.current_week + 1
+    week = params[:week] || Projection.current_week + 1
     projections = FFNerd.projections(week)
 
     if projections.empty?
@@ -60,7 +60,7 @@ class ProjectionsController < ApplicationController
       flash[:success] = "All week #{week} projections updated successfully."
     end
 
-    redirect_to :back
+    redirect_to :back rescue redirect_to weeks_path
 
   end
 end

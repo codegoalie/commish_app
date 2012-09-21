@@ -3,7 +3,7 @@
   %head
     %meta{:charset => "utf-8"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %title Commish App
+    %title= content_for?(:title) ? "#{strip_tags(yield(:title))} | Commish App" : "Commish App"
     %meta{:content => "", :name => "description"}/
     %meta{:content => "", :name => "author"}/
     = stylesheet_link_tag    "application", :media => "all"
@@ -15,6 +15,10 @@
         = render 'layouts/navigation'
         = render 'layouts/messages'
       #main{:role => "main"}
+        -if content_for?(:title)
+          .row
+            .twelve.columns
+              = yield(:title)
         .row
           .twelve.columns
             = yield
