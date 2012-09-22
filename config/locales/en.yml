@@ -2,6 +2,13 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  time:
+    formats:
+      default: '%-m/%d/%y %l:%M %P'
+  date:
+    formats:
+      default: '%-m/%d/%y'
   models:
     fantasy_team: "Fantasy Team"
     fantasy_league: "Fantasy League"
+

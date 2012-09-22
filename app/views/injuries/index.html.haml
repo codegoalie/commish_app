@@ -5,6 +5,9 @@
   .two.column
     %ul.side-nav
       %li= link_to 'Update injuries', update_all_injuries_path(@current_week), class: 'pre-icon update'
+      %li.divider
+      %li Last updated at: #{l @latest_update}
+
   .ten.columns
     -if @injuries.any?
       %table

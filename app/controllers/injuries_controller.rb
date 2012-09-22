@@ -3,6 +3,7 @@ class InjuriesController < ApplicationController
   def index
     @current_week = week_from_params_or_projections
     @injuries = Injury.where(week: @current_week)
+    @latest_update = Injury.maximum('updated_at')
   end
 
   def update_all
