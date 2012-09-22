@@ -7,19 +7,9 @@ class InjuriesController < ApplicationController
 
   def update_all
     current_week = week_from_params_or_projections
-    injuries = FFNerd.injuries(current_week)
 
-    injuries.each do |injury|
-      next if injury[:id] == 0
-      player = Player.find_by_ffn_id(injury[:id]) || 
-        Player.create(ffn_id: injury[:id], name: injury[:name], position: injury[:position], team: injury[:team])
+    Injury.update(current_week)
 
-      if existing_injury = Injury.find_by_player_id_and_week(player.id, injury[:injury][:week])
-        existing_injury.update_attributes(injury[:injury])
-      else
-        Injury.create({player_id: player.id}.merge(injury[:injury]))
-      end
-    end
     flash[:success] = "Injuries updated for week #{current_week}"
     redirect_to injuries_path
   end

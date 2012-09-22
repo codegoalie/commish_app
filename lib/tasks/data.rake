@@ -29,9 +29,21 @@ namespace :load do
   desc "Load weekly projections from FFNerd API."
   task :projections, [:week] => :environment do |t, args|
     args.with_defaults(week: Projection.current_week + 1)
+    projections(args.week.to_i)
+  end
 
-    week = args.week.to_i
+  desc "Periodic data pull; refreshed rosters; projections and injuries"
+  task :periodic_update => :environment do
+    projections
 
+    FantasyLeague.all.each do |league|
+      league.update_rosters
+    end
+
+    Injury.update
+  end
+
+  def projections(week=Projection.current_week + 1)
     errors = []
     projections = []
 
