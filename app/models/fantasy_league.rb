@@ -13,4 +13,14 @@ class FantasyLeague < ActiveRecord::Base
   def players
     fantasy_teams.map{|t| t.players }.flatten
   end
+
+  def update_rosters(team_id=nil)
+    if team_id && team = fantasy_teams.find(team_id)
+      team.update_roster
+    else
+      fantasy_teams.each do |t|
+        t.update_roster
+      end
+    end
+  end
 end

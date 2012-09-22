@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120915172057) do
+ActiveRecord::Schema.define(:version => 20120916211542) do
 
   create_table "fantasy_leagues", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20120915172057) do
     t.integer  "year"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "fantasy_players", :force => true do |t|

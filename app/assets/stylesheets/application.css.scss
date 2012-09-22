@@ -30,9 +30,9 @@ ul.nav {
 ul.nav li {
   display: inline;
 }
-#flash_notice, #flash_alert {
-  padding: 5px 8px;
-  margin: 10px 0;
+
+.flash {
+  padding: 10px;
 }
 #flash_notice {
   background-color: #CFC;
@@ -42,7 +42,6 @@ ul.nav li {
   background-color: #FCC;
   border: solid 1px #C66;
 }
-
 #flash_success {
   background-color: #52DA76;
   border: solid 1px darken(#52DA76, 10%);

@@ -1,2 +1,17 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+-content_for :title do
+  %h1 Commish App
+
+%p Welcome to the Commish App, where you will win fantasy football.
+
+
+.row
+  .six.columns
+    .panel.radius
+      We are still currently in alpha phase. If you'd like to help test,
+
+      %h4 Request an invite.
+      = form_tag request_access_path do
+        = label_tag :email
+        = text_field_tag :email, params[:email]
+        = submit_tag 'Request access'
+
