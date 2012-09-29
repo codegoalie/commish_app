@@ -10,7 +10,7 @@ class FantasyTeamsController < ApplicationController
     @players = @fantasy_players.map(&:player)
     @current_week = Projection.maximum(:week)
     @total_points = @fantasy_team.weekly_projection(@current_week)
-    @projections = Projection.for_week(@current_week).order(:rank)
+    @projections = Projection.for_week(@current_week).order(:standard)
     @fantasy_league = @fantasy_team.fantasy_league
     @league_players = @fantasy_league.players
   end

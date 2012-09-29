@@ -9,12 +9,11 @@
       %dt Year:
       %dd= @fantasy_league.year
 
-    %br
     %ul.side-nav
-      %li= link_to 'Add Team', new_fantasy_team_path
       %li.pre-icon.update-all
         = link_to 'Update all team rosters', update_rosters_fantasy_league_path
       %li.divider
+      %li= link_to 'Add Team', new_fantasy_team_path
       %li= link_to 'Edit', edit_fantasy_league_path(@fantasy_league)
   .five.columns
     %h4 Week #{@current_week}

@@ -36,14 +36,11 @@
       %table
         %thead
           %tr
-            %th Rank
             %th{colspan: 2} Player
             %th Points
         %tbody
           -@projections.each do |pro|
             %tr
-              %td= pro.rank
-
               -fantasy_player = pro.player.fantasy_players.where(fantasy_team_id: @fantasy_league.fantasy_teams.map(&:id)).first 
               -starter = fantasy_player && fantasy_player.starter
               -c = starter ? 'starter' : @league_players.include?(pro.player) ? 'no-start' : ''

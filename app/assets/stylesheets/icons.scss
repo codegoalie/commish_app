@@ -16,6 +16,8 @@
 }
 .pre-icon.update-all, .post-icon.update-all {
   background: image-url('glyphicons_082_roundabout.png') no-repeat;
+  line-height:1em;
+  a { margin-top: -4px; }
 }
 .post-icon.injured {
   background: image-url('glyphicons_298_hospital.png') no-repeat right 7px;
